@@ -10,6 +10,9 @@ import cn.qianshu.tick.entity.User1;
 
 @Repository
 public interface UserRepository extends JpaRepository<User1, Integer>,JpaSpecificationExecutor<User1> {
+	
+	@Query("select u from User1 u where u.username =:username")
+	User1 findByUsername(@Param("username")String username);
 
 	@Query("select u from User1 u where u.username =:username and u.password =:password")
 	User1 findByUserNameAndPassword(@Param("username")String username,@Param("password") String password);

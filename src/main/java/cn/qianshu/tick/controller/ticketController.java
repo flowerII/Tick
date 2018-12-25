@@ -18,10 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.qianshu.tick.entity.Order1;
 import cn.qianshu.tick.entity.Ticket;
-import cn.qianshu.tick.entity.User1;
 import cn.qianshu.tick.service.OrderService;
 import cn.qianshu.tick.service.TicketService;
-import cn.qianshu.tick.service.UserService;
 import cn.qianshu.tick.util.UUIDTool;
 
 @Controller
@@ -34,9 +32,6 @@ public class ticketController {
 	
 	@Autowired
 	private OrderService orderService;
-	
-	@Autowired
-	private UserService userService;
 
 	@RequestMapping(value = "/index", method=RequestMethod.GET)
     public String getAcitivity(Model model) {
@@ -48,13 +43,13 @@ public class ticketController {
 	
 	@RequestMapping(value = "/getTotal", method=RequestMethod.GET)
     public String getTotal(Model model) {
-		Page<Ticket> ticketList=ticketService.pageTicket(0);
+		List<Ticket> ticketList=ticketService.allTicket();
 		model.addAttribute("ticketList", ticketList);
 		logger.info("get activity list !!!");
         return "total";
     }
 	
-	@RequestMapping(value = "/addTicket", method=RequestMethod.POST)
+	@RequestMapping(value = "/addTicket1", method=RequestMethod.GET)
 	@ResponseBody
     public String getTicket(@RequestParam("activity_descript") String activity_descript,@RequestParam("ticket_total_num") Integer ticket_total_num,@RequestParam("start_time") String start_time) throws ParseException {
 		Ticket t=new Ticket();
@@ -84,7 +79,7 @@ public class ticketController {
         return "getA";
     }
 	
-	@RequestMapping(value = "/getAct", method=RequestMethod.POST)
+	@RequestMapping(value = "/getAct", method=RequestMethod.GET)
 	@ResponseBody
     public String getTick(Order1 o) {
 
@@ -126,21 +121,6 @@ public class ticketController {
 		model.addAttribute("ticketList", ticketList);
 		logger.info("login admin");
         return "admin";
-    }
-	
-	@RequestMapping(value = "/login", method=RequestMethod.POST)
-	@ResponseBody
-    public String login_post(User1 u) {
-		logger.info(u.getUsername());
-		logger.info(u.getPassword());
-		User1 user=userService.findUser(u.getUsername(),u.getPassword());
-		if(user!=null) {
-			return "1";
-		}
-		else {
-			return "登录错误！";
-		}
-        
     }
 	
 	@RequestMapping(value = "/getDetail", method=RequestMethod.GET)

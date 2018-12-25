@@ -17,8 +17,8 @@ $(document).ready(function(){
         }
 		//使用ajax提交用户登录数据并进行验证
 		$.ajax({
-			url:'/addTicket',
-			method:'POST',
+			url:'/addTicket1',
+			method:'GET',
 			data:{
 				activity_descript:$('#activity_descript').val(),
 				ticket_total_num:$('#ticket_total_num').val(),

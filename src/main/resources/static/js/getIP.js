@@ -7,7 +7,7 @@ $(document).ready(function(){
 		//使用ajax提交用户登录数据并进行验证
 		$.ajax({
 			url:'/getAct',
-			method:'POST',
+			method:'GET',
 			data:{
 				ip_address:returnCitySN["cip"],
 				activity_id:$(this).attr("id")
