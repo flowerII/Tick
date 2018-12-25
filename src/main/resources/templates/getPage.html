@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"></meta>
+	<title>XX抢票系统</title>
+  	<link th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.css}" rel="stylesheet"></link>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+			<h2 class="text-center" style="margin-top:50px;color:green;">XX系统抢票中心</h2>
+			<form id="registry_form">
+				<div class="form-group">
+					<label for="info" style="color:red">声明：</label>
+					<p style="margin-left:20px;color:red">本系统使用ip抢票，单个地址每个类型只能抢一次，售完即止！！</p>
+				</div>
+				<hr/>
+				<div th:each="ticket : ${ticketList}">
+		   			<div th:id="${ticket.activity_id}">
+		   				<label th:text="${ticket.activity_descript}" style="margin-left:80px;">Mark</label><a th:href="@{'/getActive?activity_id='+${ticket.activity_id}}"><button type="button" class="btn" style="margin-left:100px;">查看</button></a>
+		   				<hr/>
+		   			</div>
+            	</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script th:src="@{/webjars/jquery/3.2.1/dist/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js}"></script>
+</body>
+</html>

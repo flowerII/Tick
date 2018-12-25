@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"></meta>
+	<title>XX抢票系统</title>
+  	<link th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.css}" rel="stylesheet"></link>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+			<h2 class="text-center" style="margin-top:50px;color:green;">XX系统抢票中心</h2>
+			<form id="registry_form">
+				<div>
+		   			<div class="text-center">
+		   				<p style="margin-left:40px;;color:red" th:text="'本次预售票共'+${t.ticket_total_num}+'张，开抢时间'+${t.start_time}"></p>
+		   				<label th:text="${t.activity_descript}" style="margin-left:30px;">Mark</label><label th:text="'余票'+${t.left_num}+'张'" style="margin-left:80px;">查看</label>
+		   			</div>
+		   			<div style="text-align:center">
+		   				<button style="display:block;margin:0 auto;width:350px" th:id="${t.activity_id}" type="button" class="btn btn-primary">马上抢票</button>
+		   			</div>
+		   			<hr/>
+            	</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script th:src="@{/webjars/jquery/3.2.1/dist/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js}"></script>
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script type="text/javascript" th:src="@{/js/getIP.js}"></script>
+</body>
+</html>

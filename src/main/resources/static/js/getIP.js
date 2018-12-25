@@ -1,0 +1,31 @@
+$(document).ready(function(){
+	//禁止jquery ajax缓存
+	$.ajaxSetup({cache:false})
+	$('button').click(function(e){
+		//禁止表单默认的提交
+		e.preventDefault()
+		//使用ajax提交用户登录数据并进行验证
+		$.ajax({
+			url:'/getAct',
+			method:'POST',
+			data:{
+				ip_address:returnCitySN["cip"],
+				activity_id:$(this).attr("id")
+			},
+			type:'json',
+			success:function(data){
+				if(data==1){
+					alert('抢票成功！！')
+					window.location.href="/index"
+				}
+				else{
+					alert(data)
+				}
+				
+			},
+			error:function(e){
+				console.log(e)
+			}
+		})
+	})
+})
