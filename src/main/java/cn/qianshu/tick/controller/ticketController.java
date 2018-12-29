@@ -76,7 +76,7 @@ public class ticketController {
 		Ticket t=ticketService.get_by_id(activity_id);
 		model.addAttribute("t", t);
 		logger.info("get_acitivty by id !!");
-        return "getA";
+        return "detail1";
     }
 	
 	@RequestMapping(value = "/getAct", method=RequestMethod.GET)
